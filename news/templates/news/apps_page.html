@@ -1,0 +1,74 @@
+{% extends 'news/index.html' %}
+{% load static %}
+
+{% block header %}
+<body id="top">
+<!-- Top Background Image Wrapper -->
+<div class="bgded" style="background-image: url('{% static "news/images/02.jpg"%}');">
+  <!-- ################################################################################################ -->
+  <div class="wrapper overlay">
+    <header id="header" class="hoc clear">
+      <nav id="mainav" class="clear">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li ><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'news' %}">News blog</a></li>
+          <li class="active"><a href="{% url 'view_apps' %}">Applications</a></li>
+           <li><a href="#">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</a></li>
+		{% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">hi,&#160;{{ user.username }}</a></li>
+          <li><a href="{% url 'logout' %}">Log out</a></li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">sign up</a></li>
+          <li><a href="{% url 'signin' %}">log in</a></li>
+          {% endif %}
+		</ul>
+        <!-- ################################################################################################ -->
+      </nav>
+      <div id="logo">
+        <!-- ################################################################################################ -->
+        <h1><a href="{% url 'home' %}">Jdex</a></h1>
+		  <h6><a href="{% url 'home' %}">Applications</a></h6>
+        <!-- ################################################################################################ -->
+      </div>
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+{% block show-recommend %}
+{% endblock show-recommend %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+      <!-- ################################################################################################ -->
+      {% for p in pr %}
+      <h1>{{ p.title }}</h1>
+      <p>{{ p.description }}</p>
+      <ul class="nospace inline pushright">
+         <li><a class="btn" href="{{ p.get_absolute_url }}" download="">download</a></li>
+          <!--<li><a class="btn" href="#">Fringilla</a></li>-->
+        </ul>
+
+      {% endfor %}
+
+      </div>
+      <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
+{% endblock %}
+
+{% block prefooter %}
+{% endblock prefooter %}
+
+{% block footer %}
+{{ block.super }}
+{% endblock footer %}

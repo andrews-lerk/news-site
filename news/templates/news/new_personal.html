@@ -1,0 +1,74 @@
+{% extends 'news/index.html' %}
+
+{% block header %}
+{{ block.super }}
+{% block show-recommend %}
+{% endblock show-recommend %}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+      <!-- ################################################################################################ -->
+      {% for p in model %}
+      <h1>{{ p.title }}</h1>
+      <img class="imgr borderedbox inspace-5" src={{ p.img.url }} width="5" height="5">
+      <p>{{ p.text }}</p>
+      {% endfor %}
+      </div>
+      <div id="comments">
+        <h2>Comments {{ comments.count }}</h2>
+        <ul>
+          {% for f in comments %}
+          <li>
+            <article>
+              <header>
+                {% if f.auth_user == request.user %}
+                <figure class="avatar"><a href="{{ f.get_absolute_url }}">Delete</a></figure>
+                {% endif %}
+                <address>
+                By <a href="#">{{ f.auth_user }}</a>
+                </address>
+                <time>{{ f.date }}</time>
+              </header>
+              <div class="comcont">
+                <p>{{ f.text }}</p>
+              </div>
+            </article>
+          </li>
+          {% endfor %}
+        </ul>
+        {% if user.is_authenticated %}
+        <h2>Write A Comment</h2>
+        <form action="{% url 'create_comment' %}" method="post">
+          {% for f in form %}
+          {% csrf_token %}
+          {{ f }}
+          {% endfor %}
+          <div></div>
+            <input type="submit" name="submit" value="Submit Form">
+            &nbsp;
+            <input type="reset" name="reset" value="Reset Form">
+          {% endif %}
+          </div>
+        </form>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
+{% endblock %}
+
+{% block prefooter %}
+{% endblock prefooter %}
+
+{% block footer %}
+{{ block.super }}
+{% endblock footer %}

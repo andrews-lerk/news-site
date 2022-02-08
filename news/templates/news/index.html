@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jdex</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'news/css/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+</head>
+{% block header %}
+<body id="top">
+<!-- Top Background Image Wrapper -->
+<div class="bgded" style="background-image: url('{% static "news/images/02.jpg"%}');">
+  <!-- ################################################################################################ -->
+  <div class="wrapper overlay">
+    <header id="header" class="hoc clear">
+      <div id="mainav" class="clear">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'news' %}">News blog</a></li>
+          <li><a href="{% url 'view_apps' %}">Applications</a></li>
+           <li><a href="#">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</a></li>
+		{% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">hi,&#160;{{ user.username }}</a></li>
+          <li><a href="{% url 'logout' %}">Log out</a></li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">sign up</a></li>
+          <li><a href="{% url 'signin' %}">log in</a></li>
+          {% endif %}
+		</ul>
+        <!-- ################################################################################################ -->
+      </div>
+      <div id="logo">
+        <!-- ################################################################################################ -->
+        <h1><a href="{% url 'home' %}">Jdex</a></h1>
+		  <h6><a href="{% url 'home' %}">Watch and enjoy</a></h6>
+        <!-- ################################################################################################ -->
+      </div>
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+{% block show-recommend %}
+<div id="pageintro" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <article>
+      <div class="">
+        <!--<p class="font-xs nospace">Laoreet tellus quis finibus metus</p>-->
+        <h2 class="heading">Watch news</h2>
+		  <h2 class="heading">On Jdex</h2>
+        <!--<p>Nunc quis arcu congue congue nulla sed nisl libero quis mollis eros bibendum efficitur praesent placerat dui eu sem sollicitudin fermentum in lobortis urna vitae dui convallis sed pulvinar ipsum.</p>-->
+      </div>
+      <footer>
+        <ul class="nospace inline pushright">
+          <li><a class="btn inverse" href="{% url 'news' %}">News blog</a></li>
+          <!--<li><a class="btn" href="#">Fringilla</a></li>-->
+        </ul>
+      </footer>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+{% endblock show-recommend %}
+</div>
+{% endblock header %}
+
+
+{% block content %}
+<div class="wrapper row3">
+	<main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+	  <div class="center btmspace-50">
+		{% block text %}
+      <h6 class="heading">About this web-site</h6>
+      <p>I'm Andrew Atmazhov and i'm 18 years old. This is my web-site developed by myself on the Django framework
+	  using the PostgreSQL database. This web-site shows my skills in python programming and using Django framework.
+	  On JDEX you can log in and view the news and comment them. Also you can download my
+		  applications written in python by me personally and my resume. To view all scripts for this site and my appltcations visit Github.
+        Thank you for using JDEX!</p>
+	{% endblock text %}
+	    <ul>&#160;</ul>
+        <ul class="nospace group blocks">
+      <li class="one_quarter first bgded overlay" style="background-image: url('{% static "news/images/003.jpg"%}');"><a class="btn medium" href="{% url 'news' %}">News</a><br>Blog</li>
+      <li class="one_quarter bgded overlay" style="background-image: url('{% static "news/images/005.jpg"%}');"><a class="btn medium" href="{% url 'view_apps' %}">Aplications</a><br>Python</li>
+          <li class="one_quarter bgded overlay" style="background-image: url('{% static "news/images/006.jpg"%}');"><a class="btn medium" href="#">Github</a><br>View code</li>
+          <li class="one_quarter bgded overlay" style="background-image: url('{% static "news/images/img.png"%}');"><a class="btn medium" href="{% url 'resume' %}" download="">Resume</a><br>Download</li>
+    </ul>
+      </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+  <!--  <div class="clear"></div>-->
+  </main>
+</div>
+{% endblock content %}
+<!-- ################################################################################################ -->
+<div class="wrapper coloured">
+  <div class="hoc clear">
+    <!-- ################################################################################################ -->
+    <figure id="logos">
+      <ul class="nospace group">
+      </ul>
+      <figcaption class="hidden"><a class="btn small" href="#">More »</a></figcaption>
+    </figure>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+{% block footer %}
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div class="one_quarter first">
+      <h6 class="title">Contacts</h6>
+      <ul class="nospace linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Russia, Kaliningrad
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +7 (909)-79-22-370<br>
+          </li>
+        <li><i class="fa fa-envelope-o"></i> j_k7@bk.ru</li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="title">ask a question</h6>
+       <form method="post" action="{% url 'create_question' %}">
+          {% for f in ff %}
+          {% csrf_token %}
+          <p>{{ f }}</p>
+          {% endfor %}
+          <button type="submit" value="submit">Submit</button>
+
+      </form>
+
+    <!-- ################################################################################################ -->
+  </footer>
+<!--<div align="center" style="vertical-align: top">-->
+	<p align="center">
+		Atmazhov Corp. 2021 All rights reserved
+	</p>
+<!--</div>-->
+</div>
+</body>
+{% endblock footer %}

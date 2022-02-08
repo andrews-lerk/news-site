@@ -1,0 +1,38 @@
+{% extends 'news/index.html' %}
+{% block show-recommend %}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+      <!-- ################################################################################################ -->
+      <div id="comments">
+        <h2>Login</h2>
+        <form action="{% url 'signin' %}" method="post">
+          <div class="one_third">
+                {% csrf_token %}
+                {% for f in form %}
+                <p><label for="{{ f.id_for_label }}">{{f.label}}  </label>{{ f }}</p>
+                {% endfor %}
+              <p><font size="3" color="red" face="serif">{{ err }}</font></p>
+          <div>
+            <input type="submit" name="submit" value="Login">
+          </div>
+          </div>
+
+        </form>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+{% endblock %}
+
+{% block prefooter %}
+{% endblock %}
